@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+#main {
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: 400px;
+    height: 750px;
+}
+
+hr {
+    width: 70%; 
+}
+
+#display {
+    width: 90%;
+}
+
+#history, #input {
+    width: 100%;
+}
+
+#input {
+    border: none;
+}
+
+#btns {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 15px;
+    margin: 20px;
+    justify-content: center;
+}
+
+.button {
+    height: 70px;
+    width: 70px;
+}
+
+#num0 {
+    width: 160px;
+}
