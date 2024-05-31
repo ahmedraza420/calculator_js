@@ -26,24 +26,33 @@ a:hover {
 }
 
 #main {
-    border-radius: 1px;
-    border-style: solid;
+    /* border-width: 3px; */
+    /* border-style: solid; */
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
     align-items: center;
-    width: 400px;
-    height: 750px;
+    width: 381px;
+    max-height: 750px;
     border-radius: 30px;
+    background-color: #EEE2DE;
+    box-shadow: 1px 1px 7px #00000030;
 }
 
 hr {
     width: 70%; 
-    border-style: solid;
+    border: 0;
+    height: 2px;
+    border-radius: 50%;
+    background-image: linear-gradient(to right, #FFC28850, #FFC288, #FFC28850);
 }
 
 #display {
     width: 95%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 20px 10px 10px 10px;
 }
 
 #history, #input {
@@ -51,9 +60,9 @@ hr {
 }
 
 #historywrapper {
-    height: 150px;
     direction: rtl;
     overflow-y: auto;
+    flex: 1 0 170px;
 }
 
 #history {
@@ -86,9 +95,10 @@ hr {
 #input, #input:focus, #input:active {
     border: none;
     outline: none;
-    margin: 2% 0;
+    /* margin: 2% 0; */
+    font-weight: bolder;
     text-align: right;
-    height: 80px;
+    height: 60px;
     caret-color: transparent;
     font-size: 30px;
     background-color: transparent;
@@ -98,9 +108,10 @@ hr {
 #btns {
     display: flex;
     flex-flow: row wrap;
-
-    /* gap: 15px; */
+    flex: 0 1 auto;
+    aspect-ratio: 4 / 5;
     margin: 2%;
+    max-width: 360px;
     justify-content: center;
 }
 
@@ -118,39 +129,70 @@ hr {
     border-radius: 50%;
     background-color: transparent;
     filter: none;
-    transition: filter 0.1s;
-    transition: border-color 0.2s;
-}
-
-.button:hover {
-    filter: drop-shadow(1px 2px 2px #FFC288);
-    transition: 0.1s;
+    transition: box-shadow 0.2s;
 }
 
 .btntype1 {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
 }
 
 .btntype1:hover {
-    filter: none;
-    border-color: #FF6701;
+    /* filter: drop-shadow(1px 2px 2px #FFC288); */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.27);
     transition: 0.2s;
 }
 
 .btntype1:active {
-    border: none;
+    box-shadow: none;
+    transition: 0.2s;
 }
 
-.btntype2 {
+.btntype2, path {
     color: #FF6701;
     fill: #FF6701;
     background-color: transparent;
 }
 
+.btntype2:hover, path:hover {
+    color: #fc8a3e;
+    fill: #fc8a3e;
+    transition: 0.2s;
+}
+
+.btntype2:active, path:active {
+    color: #eb5e00;
+    fill: #ee5f00;
+    transition: 0.2s;
+}
+
 .btntype3 {
     background-color: #FF6701;
     color: white;
+    transition: background-color 0.2s;  
+}
+
+.btntype3:hover {
+    background-color: #ff781e;
+    transition: 0.15s;
+}
+
+.btntype3:active {
+    background-color: #f36c13;
+    transition: 0.15s;
+}
+
+#clearbtn {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#divbtn, #mulbtn, #subbtn, #addbtn {
+    font-size: 40px;
+}
+
+#percbtn {
+    font-size: 30px;
+    font-weight: bold;
 }
 
 #backspaceIcon {
@@ -193,4 +235,19 @@ footer {
 
 .textlight {
     color: #888888;
+}
+
+@media only screen and (max-width : 500px){
+    body {
+        background-color:#EEE2DE;
+    }   
+    #main {
+        box-shadow: none;
+    }
+}
+
+@media only screen and (max-width: 380px){
+    #main {
+        max-width: 300px;
+    }
 }

@@ -9,6 +9,7 @@ const allClearBtn = document.querySelector('#clearbtn');
 const bkspBtn = document.querySelector('#bckbtn');
 const NUMERICS = '0123456789.';
 const OPERATORS = '+-*/%';
+const MAXLENGTH = 15;
 let backspacePressed = false, hasOperator = false, isError = false;
 let num1 = null, num2 = null, operator = null, result = null, secondOp = null, opSymbol = null, backspaceHoldTime = undefined;
 
@@ -151,9 +152,12 @@ function tryInsertDecimal (str){
                 index = i;
                 break;
     }}
-    if (operator) {
+    if (op) {
         str.split(op)[1].split('').find(char => char == '.') ? null : input.value += '.';
     }
     else {
         str.split('').find(char => char == '.') ? null : input.value += '.';
 }}
+// function limitMaxLength(MAXLENGTH) { was limiting the input value. If the first operands takes all/most of the space, the second operand will be left with no/less space.
+//     if (input.value > MAXLENGTH) removeLastNChars(input.value, 1);
+// }
