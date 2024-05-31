@@ -61,7 +61,7 @@ hr {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
     direction: ltr;
     text-align: right;
     color: #888888;
@@ -89,7 +89,7 @@ hr {
     margin: 2% 0;
     text-align: right;
     height: 80px;
-    caret-color: #FF6701;
+    caret-color: transparent;
     font-size: 30px;
     background-color: transparent;
     color: #888888;
