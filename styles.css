@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     border-color: #FFC288;
+    font-family: sans-serif;
 }
 body {
     display: flex;
@@ -61,7 +62,12 @@ hr {
     flex-flow: column nowrap;
     justify-content: flex-end;
     gap: 10px;
-    direction: rtl;
+    direction: ltr;
+    text-align: right;
+    color: #888888;
+    font-weight: bold;
+    opacity: 60%;
+    font-size: 20px;
 }
 
 ::-webkit-scrollbar {
@@ -113,6 +119,7 @@ hr {
     background-color: transparent;
     filter: none;
     transition: filter 0.1s;
+    transition: border-color 0.2s;
 }
 
 .button:hover {
@@ -120,6 +127,20 @@ hr {
     transition: 0.1s;
 }
 
+.btntype1 {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+}
+
+.btntype1:hover {
+    filter: none;
+    border-color: #FF6701;
+    transition: 0.2s;
+}
+
+.btntype1:active {
+    border: none;
+}
 
 .btntype2 {
     color: #FF6701;
