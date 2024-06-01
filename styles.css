@@ -269,6 +269,12 @@ footer {
 .hrdark {
     background-image: linear-gradient(to right, #ffffff13, #ffffff31, #ffffff13);
 }
+.iconlight {
+    fill: black;
+}
+.icondark {
+    fill: white;
+}
 
 @media only screen and (max-width : 500px){
     body.bodylight {

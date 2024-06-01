@@ -15,6 +15,7 @@ const body = document.querySelector('body');
 const bgColorItems = document.querySelectorAll('.bglight');
 const textColorItems = document.querySelectorAll('.textlight');
 const hr = document.querySelector('hr');
+const gitIcon = document.querySelector('.iconlight');
 const NUMERICS = '0123456789.';
 const OPERATORS = '+-*/%';
 const MAXLENGTH = 15;
@@ -43,15 +44,16 @@ numericBtn.forEach(i => i.addEventListener('click', (e) => {
         isError = false;
     }
     input.value == '0' ? input.value = '' : null;
-    input.value += e.target.value;
-    input.value.slice(input.value.length - 2) == ' 0' ? input.value = removeLastNChars(input.value, 1) : null;
+    input.value.slice(input.value.length - 2) == ' 0' ? input.value = removeLastNChars(input.value, 1) + e.target.value : input.value += e.target.value;
+    // input.value += e.target.value;
+    input.value.slice(input.value.length - 3) == ' 00' ? input.value = removeLastNChars(input.value, 1) : null;
 }));
 operatorBtn.forEach(i => i.addEventListener('click', (e) => {
     if (isError){
         allClear();
         isError = false;
     }
-    if (input.value !== '' && input.value[input.value.length - 1] !== ' ' && input.value[input.value.length - 1] !== '.') 
+    if (input.value !== '' && input.value[input.value.length - 1] !== ' ') 
         {
             if (!hasOperator) {
                 input.value += ` ${e.target.value} `;
@@ -65,6 +67,10 @@ operatorBtn.forEach(i => i.addEventListener('click', (e) => {
     else if (input.value[input.value.length - 1] === ' ') {
         input.value = removeLastNChars(input.value, 3);
         input.value += ` ${e.target.value} `;
+    }
+    if (input.value == ''){
+        input.value += `0 ${e.target.value} `;
+        hasOperator = true;
     }
 }));
 decimalBtn.addEventListener('click', e => {
@@ -174,6 +180,7 @@ function toggleTheme(){
         theme = 'dark';
         classSwap(body, 'bodylight', 'bodydark');
         classSwap(hr, 'hrlight', 'hrdark');
+        classSwap(gitIcon, 'iconlight', 'icondark');
         bgColorItems.forEach(i => classSwap(i, 'bglight', 'bgdark'));
         textColorItems.forEach(i => classSwap(i, 'textlight', 'textdark'));
     }
@@ -183,6 +190,7 @@ function toggleTheme(){
         theme = 'light'; 
         classSwap(body, 'bodydark', 'bodylight');
         classSwap(hr, 'hrdark', 'hrlight');
+        classSwap(gitIcon, 'icondark', 'iconlight');
         bgColorItems.forEach(i => classSwap(i, 'bgdark', 'bglight'));
         textColorItems.forEach(i => classSwap(i, 'textdark', 'textlight'));
     }
