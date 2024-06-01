@@ -28,12 +28,14 @@ a:hover {
     /* border-width: 3px; */
     /* border-style: solid; */
     display: flex;
+    flex-grow: 1;
     flex-flow: column nowrap;
     justify-content: flex-end;
     align-items: center;
-    width: 381px;
-    max-height: 750px;
+    max-width: 340px;
+    max-height: 700px;
     border-radius: 30px;
+    box-shadow: 1px 1px 15px #00000040;
 }
 
 hr {
@@ -65,7 +67,7 @@ hr {
     flex: 1 1 auto;
     display: flex;
     flex-flow: column nowrap;
-    padding: 20px 10px 10px 10px;
+    padding: 20px 0 0 0;
 }
 
 #history, #input {
@@ -97,15 +99,18 @@ hr {
 
 ::-webkit-scrollbar {
     width: 10px;
-
 }
 ::-webkit-scrollbar-track {
-    /* background-color: #efefef; */
-    background-color: #FCECDD;
     border-radius: 5px;
+    background: linear-gradient(90deg, #00000000 0%, #00000000 35%, #7f7f7f 40%, #7f7f7f 60%, #00000000 0%);
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #afafaf;
+    background-color: #e37226;
+    border-radius: 5px;
+    /* box-shadow: 0 0 4px #00000099; */
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #c85000;
     border-radius: 5px;
 }
 
@@ -132,23 +137,22 @@ hr {
 #btns {
     display: flex;
     flex-flow: row wrap;
-    flex: 0 1 auto;
-    aspect-ratio: 4 / 5;
-    margin: 2%;
-    max-width: 360px;
-    justify-content: center;
+    flex: 1 1 0;
+    /* aspect-ratio: 4 / 4.5; */
+    margin-bottom: 2%;
+    width: 95%;
+    justify-content: space-between;
 }
 
 .button {
     /* height: 70px; */
-    width: 70px;
+    /* width: 70px;  */
     font-size: 30px;
     font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 0 1 23%;
-    margin: 1%;
+    width: 23%;
     aspect-ratio: 1 / 1;
     border: none;
     border-radius: 50%;
@@ -242,15 +246,14 @@ footer {
 }
 
 .bodylight {
-    background-color: #FCECDD;
+    background-color: #F8C794;
 }
 .bodydark {
-    background-color: #373A40;
+    background-color: #232D3F;
 }
 
 .bglight {
     background-color: #EEE2DE;
-    box-shadow: 1px 1px 7px #00000030;
 }
 .bgdark {
     background-color: #191919;
@@ -293,6 +296,7 @@ footer {
 
 @media only screen and (max-width: 380px){
     #main {
+        max-height: 600px;
         max-width: 300px;
     }
     hr {
