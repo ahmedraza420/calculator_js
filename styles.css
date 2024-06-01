@@ -12,7 +12,6 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: #FCECDD;
 }
 
 a, a:visited{
@@ -35,16 +34,30 @@ a:hover {
     width: 381px;
     max-height: 750px;
     border-radius: 30px;
-    background-color: #EEE2DE;
-    box-shadow: 1px 1px 7px #00000030;
 }
 
 hr {
     width: 70%; 
     border: 0;
-    height: 2px;
+    height: 3px;
     border-radius: 50%;
-    background-image: linear-gradient(to right, #FFC28850, #FFC288, #FFC28850);
+}
+
+#themeContainer, #headerFixer {
+    min-width: 30px;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+}
+#light, #dark {
+    height: 30px;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    stroke-width: 2.5;
+}
+#light {
+    opacity: 0;
 }
 
 #display {
@@ -73,10 +86,13 @@ hr {
     gap: 15px;
     direction: ltr;
     text-align: right;
-    color: #888888;
     font-weight: bold;
     opacity: 60%;
     font-size: 20px;
+}
+
+#history.textlight > div {
+    filter: opacity(50%);
 }
 
 ::-webkit-scrollbar {
@@ -84,7 +100,8 @@ hr {
 
 }
 ::-webkit-scrollbar-track {
-    background-color: #efefef;
+    /* background-color: #efefef; */
+    background-color: #FCECDD;
     border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb {
@@ -102,7 +119,14 @@ hr {
     caret-color: transparent;
     font-size: 30px;
     background-color: transparent;
-    color: #888888;
+}
+
+::placeholder {
+    color: inherit;
+}
+
+#input.textlight {
+    filter: opacity(65%);
 }
 
 #btns {
@@ -119,6 +143,7 @@ hr {
     /* height: 70px; */
     width: 70px;
     font-size: 30px;
+    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,33 +158,32 @@ hr {
 }
 
 .btntype1 {
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.17);
+    opacity: 50%;
 }
 
 .btntype1:hover {
-    /* filter: drop-shadow(1px 2px 2px #FFC288); */
-    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.27);
+    opacity: 35%;
     transition: 0.2s;
 }
 
 .btntype1:active {
-    box-shadow: none;
+    opacity: 100%;
     transition: 0.2s;
 }
 
-.btntype2, path {
+.btntype2, #bkspacepath {
     color: #FF6701;
     fill: #FF6701;
     background-color: transparent;
 }
 
-.btntype2:hover, path:hover {
+.btntype2:hover, #bkspacepath:hover {
     color: #fc8a3e;
     fill: #fc8a3e;
     transition: 0.2s;
 }
 
-.btntype2:active, path:active {
+.btntype2:active, #bkspacepath:active {
     color: #eb5e00;
     fill: #ee5f00;
     transition: 0.2s;
@@ -183,26 +207,10 @@ hr {
 
 #clearbtn {
     font-size: 22px;
-    font-weight: bold;
-}
-
-#divbtn, #mulbtn, #subbtn, #addbtn {
-    font-size: 40px;
-}
-
-#percbtn {
-    font-size: 30px;
-    font-weight: bold;
 }
 
 #backspaceIcon {
     height: 20px;
-}
-
-#num0 {
-     min-width: 48%;
-     aspect-ratio: 2.25 / 1;
-     border-radius: 60px;
 }
 
 footer {
@@ -233,21 +241,67 @@ footer {
     align-items: center;
 }
 
+.bodylight {
+    background-color: #FCECDD;
+}
+.bodydark {
+    background-color: #373A40;
+}
+
+.bglight {
+    background-color: #EEE2DE;
+    box-shadow: 1px 1px 7px #00000030;
+}
+.bgdark {
+    background-color: #191919;
+}
+
 .textlight {
-    color: #888888;
+    color: #000000;
+}
+.textdark {
+    color: #ffffff;
+}
+
+.hrlight {
+    background-image: linear-gradient(to right, #00000013, #00000031, #00000013);
+}
+.hrdark {
+    background-image: linear-gradient(to right, #ffffff13, #ffffff31, #ffffff13);
 }
 
 @media only screen and (max-width : 500px){
-    body {
+    body.bodylight {
         background-color:#EEE2DE;
     }   
+    body.bodydark {
+        background-color: #191919;
+    }
     #main {
         box-shadow: none;
+    }
+    hr {
+        height: 2px;
     }
 }
 
 @media only screen and (max-width: 380px){
     #main {
         max-width: 300px;
+    }
+    hr {
+        height: 1.5px;
+    }
+    .button {
+        font-size: 20px;
+    }
+    #clearbtn {
+        font-size: 15px;
+    }
+    #backspaceIcon {
+        height: 15px;
+    }
+    #light, #dark {
+        height: 22px; 
     }
 }

@@ -7,12 +7,20 @@ const historyDiv = document.querySelector('#history');
 const historyWrapper = document.querySelector("#historywrapper");
 const allClearBtn = document.querySelector('#clearbtn');
 const bkspBtn = document.querySelector('#bckbtn');
+const themeButton = document.querySelector("#themeContainer");
+const themes = document.querySelectorAll(".themeSelector");
+const lightIcon = document.querySelector("#light");
+const darkIcon = document.querySelector("#dark");
+const body = document.querySelector('body');
+const bgColorItems = document.querySelectorAll('.bglight');
+const textColorItems = document.querySelectorAll('.textlight');
+const hr = document.querySelector('hr');
 const NUMERICS = '0123456789.';
 const OPERATORS = '+-*/%';
 const MAXLENGTH = 15;
 let backspacePressed = false, hasOperator = false, isError = false;
 let num1 = null, num2 = null, operator = null, result = null, secondOp = null, opSymbol = null, backspaceHoldTime = undefined;
-
+let theme = themes[0].id;
 historyWrapper.scrollTop = historyWrapper.scrollHeight;
 
 input.addEventListener('keydown', e=> {
@@ -79,6 +87,7 @@ bkspBtn.addEventListener('click', e => {if (input.value[input.value.length - 1] 
 bkspBtn.addEventListener('mousedown', () => backspaceHoldTime = setTimeout(() => input.value = '', 750));
 bkspBtn.addEventListener('mouseup', () => clearTimeout(backspaceHoldTime));
 bkspBtn.addEventListener('mouseleave', () => {if (backspaceHoldTime) clearTimeout(backspaceHoldTime)});
+themeButton.addEventListener('click', toggleTheme);
 function calculate() {
     switch(operator){
         case '+':
@@ -158,6 +167,30 @@ function tryInsertDecimal (str){
     else {
         str.split('').find(char => char == '.') ? null : input.value += '.';
 }}
+function toggleTheme(){
+    if (theme == 'light'){
+        darkIcon.style.opacity = 0;
+        lightIcon.style.opacity = 1;
+        theme = 'dark';
+        classSwap(body, 'bodylight', 'bodydark');
+        classSwap(hr, 'hrlight', 'hrdark');
+        bgColorItems.forEach(i => classSwap(i, 'bglight', 'bgdark'));
+        textColorItems.forEach(i => classSwap(i, 'textlight', 'textdark'));
+    }
+    else {
+        lightIcon.style.opacity = 0;
+        darkIcon.style.opacity = 1;
+        theme = 'light'; 
+        classSwap(body, 'bodydark', 'bodylight');
+        classSwap(hr, 'hrdark', 'hrlight');
+        bgColorItems.forEach(i => classSwap(i, 'bgdark', 'bglight'));
+        textColorItems.forEach(i => classSwap(i, 'textdark', 'textlight'));
+    }
+}
+function classSwap(item, classbefore, classafter){
+    item.classList.remove(classbefore);
+    item.classList.add(classafter);
+}
 // function limitMaxLength(MAXLENGTH) { was limiting the input value. If the first operands takes all/most of the space, the second operand will be left with no/less space.
 //     if (input.value > MAXLENGTH) removeLastNChars(input.value, 1);
 // }
