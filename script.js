@@ -5,6 +5,7 @@ const decimalBtn = document.querySelector('.decimal');
 const equalsBtn = document.querySelector('#equalbtn');
 const historyDiv = document.querySelector('#history');
 const historyWrapper = document.querySelector("#historywrapper");
+const liveDisplay = document.querySelector('#livedisplay');
 const allClearBtn = document.querySelector('#clearbtn');
 const bkspBtn = document.querySelector('#bckbtn');
 const themeButton = document.querySelector("#themeContainer");
@@ -23,6 +24,7 @@ let backspacePressed = false, hasOperator = false, isError = false;
 let num1 = null, num2 = null, operator = null, result = null, secondOp = null, opSymbol = null, backspaceHoldTime = undefined;
 let theme = themes[0].id;
 historyWrapper.scrollTop = historyWrapper.scrollHeight;
+
 
 input.addEventListener('keydown', e=> {
     if (NUMERICS.includes(e.key)) numericBtn.forEach(i => i.value == e.key ? i.click() : null);
@@ -47,6 +49,7 @@ numericBtn.forEach(i => i.addEventListener('click', (e) => {
     input.value.slice(input.value.length - 2) == ' 0' ? input.value = removeLastNChars(input.value, 1) + e.target.value : input.value += e.target.value;
     // input.value += e.target.value;
     input.value.slice(input.value.length - 3) == ' 00' ? input.value = removeLastNChars(input.value, 1) : null;
+    showLiveCalculation();
 }));
 operatorBtn.forEach(i => i.addEventListener('click', (e) => {
     if (isError){
@@ -72,6 +75,7 @@ operatorBtn.forEach(i => i.addEventListener('click', (e) => {
         input.value += `0 ${e.target.value} `;
         hasOperator = true;
     }
+    showLiveCalculation();  
 }));
 decimalBtn.addEventListener('click', e => {
     if (input.value == '' || input.value.slice(-1) == ' ') input.value += '0.';
@@ -83,13 +87,16 @@ equalsBtn.addEventListener('click', ()=>{
     result = Math.round(calculate() * 1e10) / 1e10;
     if (result == 'Infinity' || result == '-Infinity' || isNaN(result)) isError = true;
     updateAll(result);
+    liveDisplay.innerText = '';
 }});
 allClearBtn.addEventListener('click', allClear);
 bkspBtn.addEventListener('click', e => {if (input.value[input.value.length - 1] == ' '){
     input.value = input.value.slice(0, -3);
     hasOperator = false;
 } 
-    else input.value = removeLastNChars(input.value, 1)}); // if space encountered, remove 3 chars (space operator space)
+    else input.value = removeLastNChars(input.value, 1)
+    showLiveCalculation();
+}); // if space encountered, remove 3 chars (space operator space)
 bkspBtn.addEventListener('mousedown', () => backspaceHoldTime = setTimeout(() => input.value = '', 750));
 bkspBtn.addEventListener('mouseup', () => clearTimeout(backspaceHoldTime));
 bkspBtn.addEventListener('mouseleave', () => {if (backspaceHoldTime) clearTimeout(backspaceHoldTime)});
@@ -137,6 +144,7 @@ function allClear() {
     num2 = null;
     operator = null;
     hasOperator = false;    
+    liveDisplay.innerText = '';
 }
 function updateAll(result) {
     addHistory();
@@ -173,6 +181,16 @@ function tryInsertDecimal (str){
     else {
         str.split('').find(char => char == '.') ? null : input.value += '.';
 }}
+function showLiveCalculation () {
+    parseInput();
+    if (!isNaN(num1) && num1 !== null && !isNaN(num2) && num2 !== null){
+        const liveresult = Math.round(calculate() * 1e12) / 1e12    ;
+        liveDisplay.innerText = liveresult;
+    }
+    if (num2 == null || !num2){
+        liveDisplay.innerText = '';
+    }
+}
 function toggleTheme(){
     if (theme == 'light'){
         darkIcon.style.opacity = 0;
