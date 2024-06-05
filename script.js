@@ -18,6 +18,7 @@ const textColorItems = document.querySelectorAll('.textlight');
 const hr = document.querySelector('hr');
 const gitIcon = document.querySelector('.iconlight');
 const NUMERICS = '0123456789.';
+const OPERATORSYMBOLS = '+−×÷%';
 const OPERATORS = '+-*/%';
 const MAXLENGTH = 15;
 let backspacePressed = false, hasOperator = false, isError = false;
@@ -59,17 +60,17 @@ operatorBtn.forEach(i => i.addEventListener('click', (e) => {
     if (input.value !== '' && input.value[input.value.length - 1] !== ' ') 
         {
             if (!hasOperator) {
-                input.value += ` ${e.target.value} `;
+                input.value += ` ${e.target.innerText} `;
                 hasOperator = true;
             }
             else {
-                secondOp = e.target.value;
+                secondOp = e.target.innerText;
                 equalsBtn.click();
             }
         }
     else if (input.value[input.value.length - 1] === ' ') {
         input.value = removeLastNChars(input.value, 3);
-        input.value += ` ${e.target.value} `;
+        input.value += ` ${e.target.innerText} `;
     }
     if (input.value == ''){
         input.value += `0 ${e.target.value} `;
@@ -84,7 +85,7 @@ decimalBtn.addEventListener('click', e => {
 equalsBtn.addEventListener('click', ()=>{
     parseInput();
     if (!isNaN(num1) && num1 !== null && !isNaN(num2) && num2 !== null){
-    result = Math.round(calculate() * 1e10) / 1e10;
+    result = Math.round(calculate() * 1e14) / 1e14;
     if (result == 'Infinity' || result == '-Infinity' || isNaN(result)) isError = true;
     updateAll(result);
     liveDisplay.innerText = '';
@@ -104,23 +105,18 @@ themeButton.addEventListener('click', toggleTheme);
 function calculate() {
     switch(operator){
         case '+':
-            opSymbol = '+';
             return num1 + num2;
             break;
-        case '-':
-            opSymbol = '−';
+        case '−':
             return num1 - num2;
             break;
-        case '*':
-            opSymbol = '×';
+        case '×':
             return num1 * num2;
             break;
-        case '/':
-            opSymbol = '÷';
+        case '÷':
             return num1 / num2;
             break;
         case '%':
-            opSymbol = '%';
             return num1 % num2;
             break;
     }}
@@ -130,7 +126,7 @@ function parseInput() {
     num2 = null;
     for (let i = 0; i < input.value.length; i++)
         {
-            if (OPERATORS.includes(input.value[i])){
+            if (OPERATORSYMBOLS.includes(input.value[i])){
                 if(i == 0) continue;
                 operator = input.value[i];
                 num1 = parseFloat(input.value.slice(0, i));
@@ -160,7 +156,8 @@ function updateAll(result) {
 function addHistory(){
     const historyItem = document.createElement('div');
     historyItem.setAttribute('class', 'historyItem');
-    historyItem.innerText = `${num1} ${opSymbol} ${num2}`;
+    // historyItem.innerText = `${num1} ${opSymbol} ${num2}`;
+    historyItem.innerText = input.value;
     historyDiv.appendChild(historyItem);
     historyWrapper.scrollTop = historyWrapper.scrollHeight;
 }
@@ -170,7 +167,7 @@ function removeLastNChars(str, n) {
 function tryInsertDecimal (str){
     let op, index, n1, n2;
     for (let i = 1; i < str.length; i++){
-            if (OPERATORS.includes(str[i])){
+            if (OPERATORSYMBOLS.includes(str[i])){
                 op = str[i];
                 index = i;
                 break;
@@ -184,7 +181,7 @@ function tryInsertDecimal (str){
 function showLiveCalculation () {
     parseInput();
     if (!isNaN(num1) && num1 !== null && !isNaN(num2) && num2 !== null){
-        const liveresult = Math.round(calculate() * 1e12) / 1e12    ;
+        const liveresult = Math.round(calculate() * 1e14) / 1e14;
         liveDisplay.innerText = liveresult;
     }
     if (num2 == null || !num2){

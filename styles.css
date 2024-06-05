@@ -25,8 +25,6 @@ a:hover {
 }
 
 #main {
-    /* border-width: 3px; */
-    /* border-style: solid; */
     display: flex;
     flex-grow: 1;
     flex-flow: column nowrap;
@@ -77,8 +75,11 @@ hr {
 #historywrapper {
     direction: rtl;
     overflow-y: auto;
-    flex: 1 0 140px;
-    max-height: 200px;
+    flex: 1 1 100px;
+    min-height: 50px;
+    max-height: 250px;
+    width: 98%;
+    align-self: flex-end;
 }
 
 #history {
@@ -139,7 +140,7 @@ hr {
     align-self: center;
     width: 95%;
     height: 30px;
-    font-size: 15px;
+    font-size: 18px;
     opacity: 50%;  
     display: flex;
     justify-content: flex-end;
@@ -240,6 +241,7 @@ footer {
     font-weight: 500;
 }
 #copyRights {
+    width: 250px;
     display: flex;
     flex-flow: row nowrap;
     gap: 5px;
@@ -256,6 +258,10 @@ footer {
 #contactIcon {
     display: flex;
     align-items: center;
+}
+.contactIcon {
+    height: 20px;
+    width: 20px;
 }
 
 .bodylight {
@@ -301,6 +307,7 @@ footer {
     }
     #main {
         box-shadow: none;
+        margin-bottom: auto;
     }
     hr {
         height: 2px;
@@ -309,11 +316,23 @@ footer {
 
 @media only screen and (max-width: 380px){
     #main {
-        max-height: 600px;
+        max-height: 550px;
         max-width: 300px;
+        min-width: 250px;
     }
     hr {
         height: 1.5px;
+    }
+    #history{
+        font-size: 15px;
+    }
+    #input{
+        font-size: 23px;
+        height: 35px;
+    }
+    #livedisplay{
+        font-size: 15px;
+        height: 25px;
     }
     .button {
         font-size: 20px;
@@ -326,5 +345,20 @@ footer {
     }
     #light, #dark {
         height: 22px; 
+    }
+    footer {
+        min-height: 30px;
+        font-size: 13px
+    }
+    #copyRights {
+        gap: 3px;
+        width: 170px;
+    }
+    #contactLink {
+        gap: 3px;
+    }
+    .contactIcon {
+        height: 15px;
+        width: 15px;
     }
 }
