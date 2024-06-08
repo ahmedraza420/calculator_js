@@ -299,6 +299,9 @@ footer {
 }
 
 @media only screen and (max-width : 500px){
+    body {
+        height: 100dvh;
+    }
     body.bodylight {
         background-color:#EEE2DE;
     }   
@@ -315,6 +318,10 @@ footer {
 }
 
 @media only screen and (max-width: 380px){
+    body {
+        min-height: 95vh;
+        min-height: 100dvh;
+    }
     #main {
         max-height: 550px;
         max-width: 300px;
