@@ -77,7 +77,6 @@ hr {
     overflow-y: auto;
     flex: 1 1 100px;
     min-height: 50px;
-    max-height: 250px;
     width: 98%;
     align-self: flex-end;
 }
@@ -151,16 +150,14 @@ hr {
 #btns {
     display: flex;
     flex-flow: row wrap;
-    flex: 1 1 0;
-    /* aspect-ratio: 4 / 4.5; */
+    /* flex: 1 1 0; */
+    aspect-ratio: 8 / 9;
     margin-bottom: 2%;
     width: 95%;
     justify-content: space-between;
 }
 
 .button {
-    /* height: 70px; */
-    /* width: 70px;  */
     font-size: 30px;
     font-weight: bold;
     display: flex;
@@ -311,6 +308,8 @@ footer {
     #main {
         box-shadow: none;
         margin-bottom: auto;
+        max-height: 85vh;
+        max-width: 85vw; 
     }
     hr {
         height: 2px;
@@ -323,8 +322,6 @@ footer {
         min-height: 100dvh;
     }
     #main {
-        max-height: 550px;
-        max-width: 300px;
         min-width: 250px;
     }
     hr {
