@@ -156,8 +156,8 @@ function updateAll(result) {
 function addHistory(){
     const historyItem = document.createElement('div');
     historyItem.setAttribute('class', 'historyItem');
-    // historyItem.innerText = `${num1} ${opSymbol} ${num2}`;
-    historyItem.innerText = input.value;
+    historyItem.innerText = `${num1} ${operator} ${num2}`;
+    // historyItem.innerText = input.value;
     historyDiv.appendChild(historyItem);
     historyWrapper.scrollTop = historyWrapper.scrollHeight;
 }
